@@ -1,0 +1,6 @@
+function _update_ps1() {
+    PS1="$(powerline-go -colorize-hostname -error $?)"
+}
+if [ "$TERM" != "linux" ] && [ -f "/usr/bin/powerline-go" ]; then
+    PROMPT_COMMAND="_update_ps1;" # $PROMPT_COMMAND"
+fi
