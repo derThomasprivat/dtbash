@@ -11,4 +11,9 @@ print_color_table() {
   done; 
  }
 
+# Find default gateway
+find_default_gateway() {
+  ip route | awk '/default/{print $3}'
+ }
+
 
