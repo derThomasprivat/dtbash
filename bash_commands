@@ -12,8 +12,10 @@ print_color_table() {
  }
 
 # Find default gateway
-find_default_gateway() {
-  ip route | awk '/default/{print $3}'
- }
+find_default_gateway() { ip route | awk '/default/{print $3}'; }
 
+flasher () { while true; do printf \\e[?5h; sleep 0.1; printf \\e[?5l; read -s -n1 -t1 && break; done; }
+# function flashes the terminal (by alternately sending reverse and normal video mode codes) until the user presses a key
 
+err_color() { sed -e 's/.*\bWARN.*/\x1b[7m&\x1b[0m/i' -e 's/.*\bERR.*/\x1b[93;41m&\x1b[0m/i'; }
+# displaying lines containing words starting with "WARN" in reverse video and words starting with "ERR" in bright yellow on a dark red background
